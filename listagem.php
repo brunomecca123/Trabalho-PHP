@@ -18,7 +18,7 @@ include_once('conexao.php');
 
 
 <body>
-
+<center>
 
 <h1> Lista dos Produtos </h1>
 
@@ -41,7 +41,9 @@ include_once('conexao.php');
     <?php
     
     $sql_consulta=mysqli_query( $ligar , "SELECT * FROM produtos" ); 
-    
+    $TOTAL =mysqli_num_rows($sql_consulta);
+
+
     while($dados=mysqli_fetch_array($sql_consulta)){
         ?>
 
@@ -55,19 +57,25 @@ include_once('conexao.php');
         <td><?= $dados[3] ?></td>
 
         <td><?= $dados[4] ?></td>
-        
+
+
+        <td> <a href="excluir.php?codigo= <?= $dados[0] ?> "> EXCLUIR </a> </td>
+        <td> <a href="editar.php?codigo= <?= $dados[0] ?> "> EDITAR</a> </td>
         </tr>
 
     <?php } ?>
     
-    
+    <tr> <td> TOTAL: <?= $TOTAL ?> </td> </tr> 
 
+    
     </tbody>
+
+<a href="index.html"> Menu </a> <br><br><br>
 
 
     </table>
 
 
-
+    </center>
 </body>
 </html>
